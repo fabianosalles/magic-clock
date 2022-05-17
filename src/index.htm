@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Relógio Mágico</title>
+</head>
+<body>
+    
+    <fieldset>
+        <label for="day">Data</label>
+        <input id="date" type="date" value="today" >
+
+        <label for="sunrise">Nascer do Sol</label>
+        <input type="time" id="sunrise">
+
+        <label for="sunset">Pôr do Sol</label>
+        <input type="time" id="sunset">
+    </fieldset>
+    <button onclick="calcular()">Calcular</button>
+
+    <table id="clock">
+        <thead>
+            <tr>
+                <td>Hora</td>
+                <td>Nome</td>
+                <td>Tempo</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script src="clock.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {                        
+            date.value = new Date().toLocaleDateString('en-CA')
+        })
+
+        function calcular() {
+            debugger
+            let clock = new MagicClock()
+            let _sunrise = new Date(`${date.value}T${sunrise.value}:00`)
+            let _sunset = new Date(`${date.value}T${sunset.value}:00`)
+            let timeSheet = clock.calculate(_sunrise, _sunset)
+            console.table(timeSheet)
+        }
+
+
+    </script>
+</body>
+</html>
