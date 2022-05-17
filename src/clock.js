@@ -70,8 +70,8 @@ class MagicClock {
         this.vars.sunset_offset = (sunset.getHours() * 60) + sunset.getMinutes()
         this.vars.day_minutes = this.vars.sunset_offset - this.vars.sunrise_offset
         this.vars.night_minutes = (1440) - this.vars.day_minutes        
-        this.vars.min_in_day_hour = (this.vars.day_minutes / 1440) * 60
-        this.vars.min_in_night_hour = (this.vars.night_minutes / 1440) * 60        
+        this.vars.min_in_day_hour = (this.vars.day_minutes / 1440.0) * 120
+        this.vars.min_in_night_hour = (this.vars.night_minutes / 1440.0) * 120
         this.timeSheet[0].time = new Date(sunrise.getFullYear(), sunrise.getMonth(), sunrise.getDate())        
         for (let i = 1; i < 24; i++) 
             this.timeSheet[i].time = this.addMinutes( 
@@ -84,10 +84,11 @@ class MagicClock {
 }
 
 
-/*
-let c = new MagicClock()
-let a = new Date(2022, 05, 16, 06, 25, 0, 0)
-let b = new Date(2022, 05, 16, 15, 05, 0, 0)
 
-console.table(c.calculate(a, b))
-*/
+// let c = new MagicClock()
+// let a = new Date(2022, 05, 16, 06, 0, 0, 0)
+// let b = new Date(2022, 05, 16, 18, 0, 0, 0)
+
+// console.table(c.calculate(a, b))
+// console.table(c.vars)
+

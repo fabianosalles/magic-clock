@@ -8,46 +8,102 @@
     <title>Relógio Mágico</title>
 </head>
 <body>
-    
-    <fieldset>
-        <label for="day">Data</label>
-        <input id="date" type="date" value="today" >
+    <section id="main">
+        <header>
+            <img src="img/logo.png">
+            <h1>Cálculo das Horas Mágicas</h1>
+        </header>
+                
+        <section id="controls">
+            <form id="form">
+                <fieldset>
+                    <div>
+                        <label for="day">Data</label>
+                        <input id="date" type="date" value="today" required>
+                    </div>
 
-        <label for="sunrise">Nascer do Sol</label>
-        <input type="time" id="sunrise">
+                    <div>
+                        <label for="sunrise">Nascer do Sol</label>
+                        <input type="time" id="sunrise" required>
+                    </div>
 
-        <label for="sunset">Pôr do Sol</label>
-        <input type="time" id="sunset">
-    </fieldset>
-    <button onclick="calcular()">Calcular</button>
+                    <div>
+                        <label for="sunset">Pôr do Sol</label>
+                        <input type="time" id="sunset" required>
+                    </div>
 
-    <table id="clock">
-        <thead>
-            <tr>
-                <td>Hora</td>
-                <td>Nome</td>
-                <td>Tempo</td>
-            </tr>
-        </thead>
-        <tbody>
+                    <input type="submit" value="Calcular" class="btn">
+                </fieldset>                
+            </form>
+            <section id="help">
+                Para calcular as horas mágicas, você deve informar a hora do nascer e do pôr do sol na sua cidade e em seguida clicar no botão "calcular".  
+                A hora deve ser informada no formato de 24 horas com dois dígitos para a hora e dois dígitos para os minutos.                
+                Você pode obter os horários do nasce e pôr do sol nos seguintes links:
+                <ul>
+                    <li>
+                        <a href="http://www.zenite.nu/02/nascer.php" target="_blank">
+                            <header>Zênite Astronomia</header>
+                            Horários de qualquer localidade do planeta. É preciso informar as coordenadas do lugar.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.apolo11.com/muda_cidades.php?pg_retorno=1" target="_blank">
+                            <header>Apolo11.com</header>
+                            Horários de qualquer cidade do Brasil
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
 
-        </tbody>
-    </table>
+        <section id="clock" class="hidden">
+            <h1>Tabela de Horas Mágicas</h1>
+            <table id="timeTable" >
+                <thead>
+                    <tr>
+                        <td>Hora</td>
+                        <td>Nome</td>
+                        <td>Início</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
 
 
     <script src="clock.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function(e) {                        
             date.value = new Date().toLocaleDateString('en-CA')
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault()
+                
+                timeTable.tBodies[0].innerHTML = ""
+                let data = calcular()                
+                data.forEach((x, i) => {
+                    const row = 
+                        `<tr>
+                            <td>${i+1}ª hora</td>
+                            <td>${x.name}</td>
+                            <td>${x.time.toLocaleTimeString('pt')}</td>
+                        </tr>
+                        `
+                        timeTable.tBodies[0].innerHTML += row
+                })
+                
+                clock.classList.remove('hidden')
+
+            })
+
         })
 
-        function calcular() {
-            debugger
-            let clock = new MagicClock()
+
+        function calcular() {                        
             let _sunrise = new Date(`${date.value}T${sunrise.value}:00`)
             let _sunset = new Date(`${date.value}T${sunset.value}:00`)
-            let timeSheet = clock.calculate(_sunrise, _sunset)
-            console.table(timeSheet)
+            return  new MagicClock().calculate(_sunrise, _sunset)                        
         }
 
 
