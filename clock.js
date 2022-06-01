@@ -82,13 +82,3 @@ class MagicClock {
         return this.timeSheet
     }
 }
-
-
-
-// let c = new MagicClock()
-// let a = new Date(2022, 05, 16, 06, 0, 0, 0)
-// let b = new Date(2022, 05, 16, 18, 0, 0, 0)
-
-// console.table(c.calculate(a, b))
-// console.table(c.vars)
-
