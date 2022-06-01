@@ -160,3 +160,107 @@ tr:nth-child(even) {
 .shown {
     opacity: 1;
 }
+
+/* responsiveness */
+
+@media (max-width:600px)  { 
+
+    body, * {
+        font-size: 1rem;
+    }
+    
+    section#main {        
+        width: 100%;
+        border: 01px solid transparent;
+    }
+
+        section#main header {
+            display: block; 
+            text-align: center;
+            line-height: 2.5rem;
+        }
+
+        section#main header img {         
+            float: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        section#main header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 1.5rem;
+            font-weight: bold;            
+        }
+
+    section#controls {
+        text-align: left;        
+        padding: 0;
+        margin-top: 1rem;
+        border-radius: .4rem;        
+    }
+
+        section#controls fieldset {
+            margin: .5rem;        
+        }
+
+        section#controls fieldset div {
+            display: block;
+            padding: .7rem;                    
+        }
+        
+        section#controls fieldset div label {
+            display: inline-block;            
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            width: 9rem;
+        }
+
+        section#controls fieldset div input {  
+            font-size: 1.1rem;
+            width: 11rem;
+        }
+
+        section#controls fieldset input[type="submit"] {
+            margin: .6rem;
+            margin-left: 10rem;
+            padding: .6rem 1.5rem;
+        }
+
+        section#controls section#help {            
+            font-size: 1rem;
+        }
+
+        section#controls section#help ul  {
+            padding: 0 .5rem;
+            grid-gap: 1rem;
+        }
+
+    section#clock {
+        text-align: center;       
+        
+        margin-bottom: 1rem;
+        padding-bottom: 2rem;                
+        width: 90%;
+    }    
+
+    section#clock h1 {
+        color: var(--color-primary);
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin: 0 0 .4rem 0;
+    }
+
+    #timeTable {
+        margin: 0 auto;
+        border: 1px solid var(--color-primary);    
+        width: 90%;
+        transition: opacity 300ms;
+    }
+
+    #timeTable td {    
+        padding: .5rem
+    }
+    
+    
+}
