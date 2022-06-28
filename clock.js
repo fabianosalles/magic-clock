@@ -59,6 +59,7 @@ class MagicClock {
 
     addMinutes = (date, minutes) => new Date(date.getTime() + minutes * 60000)    
 
+
     calculate(sunrise, sunset) {                
         if (!sunrise) throw Error('Sunrise is not specified')
         if (!sunset) throw Error('Sunset is not specified')
@@ -72,7 +73,7 @@ class MagicClock {
         this.vars.night_minutes = (1440) - this.vars.day_minutes        
         this.vars.min_in_day_hour = (this.vars.day_minutes / 1440.0) * 120
         this.vars.min_in_night_hour = (this.vars.night_minutes / 1440.0) * 120
-        this.timeSheet[0].time = new Date(sunrise.getFullYear(), sunrise.getMonth(), sunrise.getDate())        
+        this.timeSheet[0].time = new Date(JSON.parse(JSON.stringify(sunrise)))
         for (let i = 1; i < 24; i++) 
             this.timeSheet[i].time = this.addMinutes( 
                 this.timeSheet[i-1].time, 
