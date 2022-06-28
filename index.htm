@@ -58,6 +58,10 @@
 
         <section id="clock" class="hidden">
             <h1>Tabela de Horas Mágicas</h1>
+            <section id="summary">
+                <div>Minutos por hora diurna: <span id="minutos-hora-dia">?</span></div>
+                <div>Minutos por hora noturna: <span id="minutos-hora-noite">?</span></div>
+            </section>
             <table id="timeTable" >
                 <thead>
                     <tr>
@@ -79,10 +83,13 @@
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault()
+                const _clock = calcular()
+
                 
                 timeTable.tBodies[0].innerHTML = ""
-                let data = calcular()                
-                data.forEach((x, i) => {
+                document.getElementById('minutos-hora-dia').innerHTML = `${_clock.vars.min_in_day_hour.toFixed(1)}`
+                document.getElementById('minutos-hora-noite').innerHTML = `${_clock.vars.min_in_night_hour.toFixed(1)}`
+                _clock.timeSheet.forEach((x, i) => {
                     const row = 
                         `<tr>
                             <td>${i+1}ª hora</td>
@@ -102,7 +109,9 @@
         function calcular() {                        
             let _sunrise = new Date(`${date.value}T${sunrise.value}:00`)
             let _sunset = new Date(`${date.value}T${sunset.value}:00`)
-            return  new MagicClock().calculate(_sunrise, _sunset)                        
+            let result =  new MagicClock()
+            result.calculate(_sunrise, _sunset)
+            return result                    
         }
 
 
