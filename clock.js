@@ -77,7 +77,7 @@ class MagicClock {
         for (let i = 1; i < 24; i++) 
             this.timeSheet[i].time = this.addMinutes( 
                 this.timeSheet[i-1].time, 
-                i < 12 ? this.vars.min_in_day_hour : this.vars.min_in_night_hour
+                i <= 12 ? this.vars.min_in_day_hour : this.vars.min_in_night_hour
             )
         
         return this.timeSheet
